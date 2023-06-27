@@ -102,10 +102,13 @@ archivo_salida <- "./exp/HT2020/gridsearch.txt"
 # atencion que si ya existe el archivo, esta instruccion LO SOBREESCRIBE, y lo que estaba antes se pierde
 # la forma que no suceda lo anterior es con append=TRUE
 cat(
-  file = archivo_salida,
+  file = "~/salida.txt",
+  append = TRUE,
   sep = "",
+  "cp", "\t",
   "max_depth", "\t",
   "min_split", "\t",
+  "min_bucket", "\t",
   "ganancia_promedio", "\n"
 )
 
@@ -129,7 +132,7 @@ for (vcp in c (-0.5, 0, 0.1)){
 
     # escribo los resultados al archivo de salida
     cat(
-      file = archivo_salida,
+      file = "~/salida.txt",
       append = TRUE,
       sep = "",
       vcp, "\t",

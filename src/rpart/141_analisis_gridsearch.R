@@ -21,6 +21,8 @@ max_param <- data.frame(cp = salida$cp[181:190]
                         , min_bucket = salida$min_bucket[181:190]  
                         , ganancia_promedio = salida$ganancia_promedio[181:190])
 
+# Se obtuvo la mejor ganancia con la prueba 04 dando un score en public = 44.2292
+
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------  
 

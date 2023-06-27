@@ -81,11 +81,12 @@ ArbolesMontecarlo <- function(semillas, param_basicos) {
 #------------------------------------------------------------------------------
 
 # Aqui se debe poner la carpeta de la computadora local
-setwd("~/buckets/b1") # Establezco el Working Directory
+#setwd("~/buckets/b1") # Establezco el Working Directory
+setwd("E:/MCD/labo/datasets") # Establezco el Working Directory
 # cargo los datos
 
 # cargo los datos
-dataset <- fread("./datasets/dataset_pequeno.csv")
+dataset <- fread("dataset_pequeno.csv")
 
 # trabajo solo con los datos con clase, es decir 202107
 dataset <- dataset[clase_ternaria != ""]
@@ -111,9 +112,10 @@ cat(
 
 # itero por los loops anidados para cada hiperparametro
 
-for (vmax_depth in c(4, 6, 8, 10, 12, 14)){
-  for (vmin_split in c(1000, 800, 600, 400, 200, 100, 50, 20, 10))  {
-    for(vmin_bucket i c (500, 400, 300, 200, 100, 50, 20, 10, 5, 1)){
+for (vcp in c (-0.5, 0, 0.1)){
+  for(vmax_depth in c(4, 6, 8, 10, 12, 14)){
+    for (vmin_split in c(1000, 800, 600, 400, 200, 100, 50, 20, 10)){  
+      for(vmin_bucket in c (500, 400, 300, 200, 100, 50, 20, 10, 5, 1)){
     # notar como se agrega
     param_basicos <- list(
       "cp" = vcp, # complejidad minima

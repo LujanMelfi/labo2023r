@@ -22,7 +22,7 @@ modelo <- rpart(
         xval = 0,
         cp = -0.5, # esto significa no limitar la complejidad de los splits
         minsplit = 1000, # minima cantidad de registros para que se haga el split
-        minbucket = 500, # tamaño minimo de una hoja
+        minbucket = 400, # tamaño minimo de una hoja
         maxdepth = 8
 ) # profundidad maxima del arbol
 

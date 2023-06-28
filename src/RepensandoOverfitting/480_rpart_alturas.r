@@ -9,6 +9,7 @@ require("rpart")
 setwd("E:/MCD/labo/datasets") # establezco la carpeta donde voy a trabajar
 
 # cargo el dataset
+#dataset <- fread("./datasets/dataset_pequeno.csv")
 dataset <- fread("dataset_pequeno.csv")
 
 

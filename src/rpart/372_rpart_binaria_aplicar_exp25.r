@@ -37,7 +37,7 @@ PARAM$rpart$minsplit <- 1991.06376104314
 
 PARAM$rpart$minbucket <- 594.013372490335
 
-PARAM$rpart$maxdepth <- 3
+PARAM$rpart$mixdepth <- 3
 
 PARAM$semilla <- 980717
 

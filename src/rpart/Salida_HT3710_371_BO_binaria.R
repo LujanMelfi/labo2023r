@@ -38,7 +38,7 @@ max_param <- data.frame(cp = HT3710$cp[filas_deseadas],
 
 library(openxlsx)
 
-# Ruta y nombre de archivo para guardar el Excel en tu escritorio
+# Ruta y nombre de archivo para guardar resultados 
 
 ruta_archivo <- "E:/MCD/labo/datasets/exp/HT3710/max_param_371_BO_binaria.xlsx"
 

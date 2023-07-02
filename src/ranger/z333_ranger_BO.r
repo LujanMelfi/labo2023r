@@ -40,8 +40,8 @@ PARAM$experimento <- "HT3330"
 PARAM$input$dataset <- "./datasets/dataset_pequeno.csv"
 PARAM$input$training <- c(202107) # los meses en los que vamos a entrenar
 
-PARAM$trainingstrategy$semilla_azar <- 102191 # Aqui poner su  primer  semilla
-PARAM$ranger$semilla_azar <- 200177 # Aqui poner su  segunda  semilla
+PARAM$trainingstrategy$semilla_azar <- 980717 # Aqui poner su  primer  semilla
+PARAM$ranger$semilla_azar <- 591067 # Aqui poner su  segunda  semilla
 
 PARAM$hyperparametertuning$iteraciones <- 100
 PARAM$hyperparametertuning$xval_folds <- 5

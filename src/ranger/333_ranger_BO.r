@@ -33,7 +33,6 @@ options(error = function() {
 
 # defino los parametros de la corrida, en una lista, la variable global  PARAM
 #  muy pronto esto se leera desde un archivo formato .yaml
-
 PARAM <- list()
 
 PARAM$experimento <- "HT3330"

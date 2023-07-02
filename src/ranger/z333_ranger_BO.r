@@ -40,8 +40,8 @@ PARAM$experimento <- "HT3330"
 PARAM$input$dataset <- "./datasets/dataset_pequeno.csv"
 PARAM$input$training <- c(202107) # los meses en los que vamos a entrenar
 
-PARAM$trainingstrategy$semilla_azar <- 980717 # Aqui poner su  primer  semilla
-PARAM$ranger$semilla_azar <- 591067 # Aqui poner su  segunda  semilla
+PARAM$trainingstrategy$semilla_azar <- 102191 # Aqui poner su  primer  semilla
+PARAM$ranger$semilla_azar <- 200177 # Aqui poner su  segunda  semilla
 
 PARAM$hyperparametertuning$iteraciones <- 100
 PARAM$hyperparametertuning$xval_folds <- 5
@@ -69,24 +69,24 @@ loguear <- function(
     ext = ".txt", verbose = TRUE) {
   archivo <- arch
   if (is.na(arch)) archivo <- paste0(folder, substitute(reg), ext)
-
+  
   if (!file.exists(archivo)) # Escribo los titulos
-    {
-      linea <- paste0(
-        "fecha\t",
-        paste(list.names(reg), collapse = "\t"), "\n"
-      )
-
-      cat(linea, file = archivo)
-    }
-
+  {
+    linea <- paste0(
+      "fecha\t",
+      paste(list.names(reg), collapse = "\t"), "\n"
+    )
+    
+    cat(linea, file = archivo)
+  }
+  
   linea <- paste0(
     format(Sys.time(), "%Y%m%d %H%M%S"), "\t", # la fecha y hora
     gsub(", ", "\t", toString(reg)), "\n"
   )
-
+  
   cat(linea, file = archivo, append = TRUE) # grabo al archivo
-
+  
   if (verbose) cat(linea) # imprimo por pantalla
 }
 #------------------------------------------------------------------------------
@@ -101,22 +101,22 @@ particionar <- function(
     data, division, agrupa = "",
     campo = "fold", start = 1, seed = NA) {
   if (!is.na(seed)) set.seed(seed)
-
+  
   bloque <- unlist(mapply(function(x, y) {
     rep(y, x)
   }, division, seq(from = start, length.out = length(division))))
-
+  
   data[, (campo) := sample(rep(bloque, ceiling(.N / length(bloque))))[1:.N],
-    by = agrupa
+       by = agrupa
   ]
 }
 #------------------------------------------------------------------------------
 
 ranger_Simple <- function(fold_test, pdata, param) {
   # genero el modelo
-
+  
   set.seed(PARAM$ranger$semilla_azar)
-
+  
   modelo <- ranger(
     formula = "clase_binaria ~ .",
     data = pdata[fold != fold_test],
@@ -126,18 +126,18 @@ ranger_Simple <- function(fold_test, pdata, param) {
     min.node.size = param$min.node.size,
     max.depth = param$max.depth
   )
-
+  
   prediccion <- predict(modelo, pdata[fold == fold_test])
-
+  
   ganancia_testing <- pdata[
     fold == fold_test,
     sum((prediccion$predictions[, "POS"] > 1 / 40) *
-      ifelse(clase_binaria == "POS",
-        PARAM$hyperparametertuning$POS_ganancia,
-        PARAM$hyperparametertuning$NEG_ganancia
-      ))
+          ifelse(clase_binaria == "POS",
+                 PARAM$hyperparametertuning$POS_ganancia,
+                 PARAM$hyperparametertuning$NEG_ganancia
+          ))
   ]
-
+  
   return(ganancia_testing)
 }
 #------------------------------------------------------------------------------
@@ -147,20 +147,20 @@ ranger_CrossValidation <- function(
     pcampos_buenos, qfolds, pagrupa, semilla) {
   divi <- rep(1, qfolds)
   particionar(data, divi, seed = semilla, agrupa = pagrupa)
-
+  
   ganancias <- mcmapply(ranger_Simple,
-    seq(qfolds), # 1 2 3 4 5
-    MoreArgs = list(data, param),
-    SIMPLIFY = FALSE,
-    mc.cores = 1
+                        seq(qfolds), # 1 2 3 4 5
+                        MoreArgs = list(data, param),
+                        SIMPLIFY = FALSE,
+                        mc.cores = 1
   ) # dejar esto en  1, porque ranger ya corre en paralelo
-
+  
   data[, fold := NULL] # elimino el campo fold
-
+  
   # devuelvo la ganancia promedio normalizada
   ganancia_promedio <- mean(unlist(ganancias))
   ganancia_promedio_normalizada <- ganancia_promedio * qfolds
-
+  
   return(ganancia_promedio_normalizada)
 }
 #------------------------------------------------------------------------------
@@ -169,23 +169,23 @@ ranger_CrossValidation <- function(
 
 EstimarGanancia_ranger <- function(x) {
   GLOBAL_iteracion <<- GLOBAL_iteracion + 1
-
+  
   xval_folds <- PARAM$hyperparametertuning$xval_folds
-
+  
   ganancia <- ranger_CrossValidation(dataset,
-    param = x,
-    qfolds = xval_folds,
-    pagrupa = "clase_binaria",
-    semilla = PARAM$trainingstrategy$semilla_azar
+                                     param = x,
+                                     qfolds = xval_folds,
+                                     pagrupa = "clase_binaria",
+                                     semilla = PARAM$trainingstrategy$semilla_azar
   )
-
+  
   # logueo
   xx <- x
   xx$xval_folds <- xval_folds
   xx$ganancia <- ganancia
   xx$iteracion <- GLOBAL_iteracion
   loguear(xx, arch = klog)
-
+  
   return(ganancia)
 }
 #------------------------------------------------------------------------------
@@ -222,7 +222,7 @@ if (file.exists(klog)) {
 
 # paso a trabajar con clase binaria POS={BAJA+2}   NEG={BAJA+1, CONTINUA}
 dataset[, clase_binaria :=
-  as.factor(ifelse(clase_ternaria == "BAJA+2", "POS", "NEG"))]
+          as.factor(ifelse(clase_ternaria == "BAJA+2", "POS", "NEG"))]
 
 dataset[, clase_ternaria := NULL] # elimino la clase_ternaria, ya no la necesito
 

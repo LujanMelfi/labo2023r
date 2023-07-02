@@ -77,6 +77,6 @@ archivo_salida <- "./exp/KA3310/KA3310_001.csv"
 
 # genero el archivo para Kaggle
 fwrite(entrega,
-  file = archivo_salida,
-  sep = ","
+       file = archivo_salida,
+       sep = ","
 )

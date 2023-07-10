@@ -52,6 +52,7 @@ PARAM$RandomForest$mtry <- 40
 PARAM$RandomForest$semilla <- 980717 # cambiar por la propia semilla
 
 
+
 # varia de 0.0 a 2.0, si es 0.0 NO se activan
 PARAM$CanaritosAsesinos$ratio <- 0.0
 # desvios estandar de la media, para el cutoff

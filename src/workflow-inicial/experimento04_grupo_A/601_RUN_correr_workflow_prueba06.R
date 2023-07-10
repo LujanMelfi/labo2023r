@@ -18,3 +18,4 @@ source("~/labo2023r/src/workflow-inicial/641_TS_training_strategy_EXP04_A_prueba
 # ultimos pasos, muy lentos
 source("~/labo2023r/src/workflow-inicial/651_HT_lightgbm_EXP04_A_prueba06.r")
 source("~/labo2023r/src/workflow-inicial/661_ZZ_final_EXP04_A_prueba06.r")
+

@@ -27,6 +27,7 @@ PARAM <- list()
 PARAM$experimento <- "HB7814"
 
 # el input deben ser semillerios
+
 PARAM$exp_input <- c("ZZ7710_1",
                        "ZZ7711",
                      "ZZ7712_1",

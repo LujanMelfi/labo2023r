@@ -44,7 +44,7 @@ PARAM$Tendencias2$ratioavg <- FALSE
 PARAM$Tendencias2$ratiomax <- FALSE
 
 PARAM$Tendencias3$run <- TRUE
-PARAM$Tendencias3$ventana <- 18 # aumento de 6 a 18
+PARAM$Tendencias3$ventana <- 12 # aumento de 6 a 12
 PARAM$Tendencias3$tendencia <- TRUE
 PARAM$Tendencias3$minimo <- FALSE
 PARAM$Tendencias3$maximo <- FALSE
@@ -54,7 +54,7 @@ PARAM$Tendencias3$ratiomax <- FALSE
 
 
 PARAM$RandomForest$run <- TRUE
-PARAM$RandomForest$num.trees <- 200
+PARAM$RandomForest$num.trees <- 50
 PARAM$RandomForest$max.depth <- 4
 PARAM$RandomForest$min.node.size <- 500
 PARAM$RandomForest$mtry <- 40

@@ -48,7 +48,7 @@ source("~/labo2023r/src/Workflow_semillerio_entrega_final/cambio_FE_a_prueba_09/
 source("~/labo2023r/src/Workflow_semillerio_entrega_final/cambio_FE_a_prueba_09/771_ZZ_final_semillerio_2.r")
 source("~/labo2023r/src/Workflow_semillerio_entrega_final/cambio_FE_a_prueba_09/771_ZZ_final_semillerio_3.r")
 
-# Sexto experimento (con canaritos pero cambio FE a la prueba 09 exp A problema 04)
+# Sexto experimento (extra semillerio sobre el ZZ6610)
 source("~/labo2023r/src/Workflow_semillerio_entrega_final/extra_semillerio_sobre_ZZ6610/731_FE_historia.r")
 source("~/labo2023r/src/Workflow_semillerio_entrega_final/extra_semillerio_sobre_ZZ6610/741_TS_training_strategy.r")
 source("~/labo2023r/src/Workflow_semillerio_entrega_final/extra_semillerio_sobre_ZZ6610/751_HT_lightgbm.r")
